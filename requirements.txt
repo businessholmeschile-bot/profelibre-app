@@ -1,12 +1,8 @@
 streamlit
 supabase
 python-docx
-pandas
 openpyxl
 requests
 pdfplumber
 pytesseract
 Pillow
-google-api-python-client
-google-auth-httplib2
-google-auth-oauthlib
