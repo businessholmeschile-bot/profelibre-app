@@ -108,6 +108,9 @@ if 'show_login' not in st.session_state:
 def main():
     local_css()
     
+    # URL Bypass Logic (Infalible for the user)
+    if "demo" in st.query_params or "bypass" in st.query_params:
+        st.session_state['user'] = {'email': 'demo@profelibre.cl', 'id': 'demo_user'}
     # Navigation Logic
     if not st.session_state['user']:
         if st.session_state['show_login']:
