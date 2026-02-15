@@ -67,7 +67,12 @@ def handle_auth():
             except Exception:
                 st.error("Credenciales inválidas.")
     
-    st.markdown("<div style='margin-top: 2.5rem; border-top: 1px solid #F3F4F6; padding-top: 1.5rem;'>", unsafe_allow_html=True)
+    if st.button("Entrar como Invitado (Demo)", use_container_width=True):
+        st.session_state['user'] = {'email': 'demo@profelibre.cl', 'id': 'demo_user'}
+        st.success("Accediendo en modo demo...")
+        st.rerun()
+
+    st.markdown("<div style='margin-top: 1.5rem; border-top: 1px solid #F3F4F6; padding-top: 1.5rem;'>", unsafe_allow_html=True)
     st.markdown("<p style='color: #9CA3AF; font-size: 0.85rem;'>¿No tienes acceso? <br> Consulta con tu administrador PIE.</p>", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
