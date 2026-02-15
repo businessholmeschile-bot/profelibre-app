@@ -16,12 +16,10 @@ st.set_page_config(
 # Global CSS for Stitch Identity (FORCE Light Theme)
 def local_css():
     st.markdown("""
-        <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700&display=swap');
-        
-        /* Force Light Theme Overrides */
-        [data-testid="stAppViewContainer"], .main, .stApp {
+        /* Force Light Theme Overrides - High Specificity */
+        html, body, [data-testid="stAppViewContainer"], [data-testid="stHeader"], .main, .stApp {
             background-color: #F9FAFB !important;
+            background-image: none !important;
             color: #111827 !important;
         }
 

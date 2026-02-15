@@ -1,10 +1,1 @@
-.git
-.streamlit
-artifacts
-brain
-.DS_Store
-*.md
-GITHUB_GUIDE.md
-assets/logo_default.png
-__pycache__
-*.pyc
+*
