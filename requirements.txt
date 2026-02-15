@@ -3,6 +3,4 @@ supabase
 python-docx
 openpyxl
 requests
-pdfplumber
-pytesseract
-Pillow
+pypdf

@@ -4,9 +4,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_LINE_SPACING
 import os
 import io
 import zipfile
-import pdfplumber
-from PIL import Image
-import pytesseract
+import pypdf
 import requests
 
 class CoreEngineV13:
@@ -24,11 +22,13 @@ class CoreEngineV13:
             doc = Document(source_file)
             self.extracted_text = "\n".join([p.text for p in doc.paragraphs])
         elif file_type == 'pdf':
-            with pdfplumber.open(source_file) as pdf:
-                self.extracted_text = "\n".join([page.extract_text() for page in pdf.pages])
+            reader = pypdf.PdfReader(source_file)
+            text = ""
+            for page in reader.pages:
+                text += page.extract_text() + "\n"
+            self.extracted_text = text
         elif file_type in ['png', 'jpg', 'jpeg']:
-            image = Image.open(source_file)
-            self.extracted_text = pytesseract.image_to_string(image)
+            self.extracted_text = "[OCR no disponible en esta versión ligera. Por favor usa archivos Word o PDF.]"
         elif file_type == 'google_url':
             self.extracted_text = "[Integración Google: Descargando contenido de la URL...]\n" + self._handle_google_export(source_file)
         
