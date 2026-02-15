@@ -5,6 +5,7 @@ from views.dashboard import render_dashboard
 from views.generator import render_generator
 from views.students import render_students
 from views.landing import render_landing
+from views.correccion import render_correccion
 
 # Page Configuration
 st.set_page_config(
@@ -126,6 +127,8 @@ def main():
             render_dashboard()
         elif st.session_state['page'] == 'Generador':
             render_generator()
+        elif st.session_state['page'] == 'Corrección':
+            render_correccion()
         elif st.session_state['page'] == 'Estudiantes':
             render_students()
 
