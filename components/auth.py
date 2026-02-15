@@ -14,7 +14,7 @@ def handle_auth():
             justify-content: center;
             align-items: center;
             padding: 4rem 1rem;
-            background-color: #F9FAFB;
+            background-color: #F9FAFB !important;
             min-height: 80vh;
         }
         .auth-card {

@@ -13,14 +13,20 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Global CSS for Stitch Identity (Light Theme)
+# Global CSS for Stitch Identity (FORCE Light Theme)
 def local_css():
     st.markdown("""
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700&display=swap');
         
+        /* Force Light Theme Overrides */
+        [data-testid="stAppViewContainer"], .main, .stApp {
+            background-color: #F9FAFB !important;
+            color: #111827 !important;
+        }
+
         :root {
-            --primary-color: #1D4ED8; /* Azul Stitch */
+            --primary-color: #1D4ED8;
             --bg-color: #F9FAFB;
             --sidebar-bg: #FFFFFF;
             --card-bg: #FFFFFF;
@@ -29,59 +35,63 @@ def local_css():
         }
 
         .main {
-            background-color: var(--bg-color);
+            background-color: #F9FAFB !important;
             font-family: 'Inter', sans-serif;
         }
 
         h1, h2, h3 {
             font-family: 'Outfit', sans-serif !important;
-            color: var(--text-main) !important;
+            color: #111827 !important;
         }
 
-        p, span, div {
-            font-family: 'Inter', sans-serif;
+        p, span, div, label {
+            font-family: 'Inter', sans-serif !important;
+            color: #374151 !important;
         }
 
         /* Clean Cards with Subtle Shadows */
-        .stMetric, .stTable, div[data-testid="stExpander"] {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 1.5rem;
-            border: 1px solid #E5E7EB;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        .stMetric, .stTable, div[data-testid="stExpander"], div[data-testid="stVerticalBlock"] > div[style*="background"] {
+            background: #FFFFFF !important;
+            border-radius: 8px !important;
+            padding: 1.5rem !important;
+            border: 1px solid #E5E7EB !important;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) !important;
         }
 
         /* Buttons Styling - Solid Blue */
         .stButton>button {
-            border-radius: 6px;
-            background-color: var(--primary-color) !important;
+            border-radius: 6px !important;
+            background-color: #1D4ED8 !important;
             color: white !important;
-            border: none;
-            padding: 0.5rem 1.5rem;
-            font-weight: 600;
-            transition: background 0.2s;
+            border: none !important;
+            padding: 0.5rem 1.5rem !important;
+            font-weight: 600 !important;
         }
         
         .stButton>button:hover {
             background-color: #1E40AF !important;
-            border: none;
         }
 
-        /* Sidebar Styling - White and Clean */
+        /* Sidebar Styling - Force White */
         section[data-testid="stSidebar"] {
-            background-color: var(--sidebar-bg) !important;
-            border-right: 1px solid #E5E7EB;
+            background-color: #FFFFFF !important;
+            border-right: 1px solid #E5E7EB !important;
         }
         
-        [data-testid="stSidebarNav"] {
-            background-color: var(--sidebar-bg) !important;
+        section[data-testid="stSidebar"] * {
+            color: #374151 !important;
         }
 
-        /* Input Styling */
+        /* Input Styling - Force Light */
         .stTextInput>div>div>input {
-            border-radius: 6px;
-            border: 1px solid #D1D5DB;
+            border-radius: 6px !important;
+            border: 1px solid #D1D5DB !important;
+            background-color: white !important;
+            color: #111827 !important;
         }
+        
+        /* Hide Streamlit Header/Footer for Premium Look */
+        header, footer { visibility: hidden !important; }
         </style>
     """, unsafe_allow_html=True)
 
