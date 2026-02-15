@@ -4,13 +4,14 @@ from components.sidebar import render_sidebar
 from views.dashboard import render_dashboard
 from views.generator import render_generator
 from views.students import render_students
+from views.landing import render_landing
 
 # Page Configuration
 st.set_page_config(
     page_title="ProfeLibre - SaaS Educativo",
     page_icon="🚀",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed" if 'user' not in st.session_state or st.session_state['user'] is None else "expanded"
 )
 
 # Global CSS for Stitch Identity (FORCE Light Theme)
@@ -47,7 +48,6 @@ def local_css():
 
         p, span, div, label {
             font-family: 'Inter', sans-serif !important;
-            color: #374151 !important;
         }
 
         /* Clean Cards with Subtle Shadows */
@@ -100,20 +100,29 @@ def local_css():
 if 'user' not in st.session_state:
     st.session_state['user'] = None
 if 'page' not in st.session_state:
-    st.session_state['page'] = 'Dashboard'
+    st.session_state['page'] = 'Home'
+if 'show_login' not in st.session_state:
+    st.session_state['show_login'] = False
 
 def main():
     local_css()
     
-    # Authentication check
+    # Navigation Logic
     if not st.session_state['user']:
-        handle_auth()
+        if st.session_state['show_login']:
+            # Botón de volver a la landing
+            if st.sidebar.button("← Volver al Inicio"):
+                st.session_state['show_login'] = False
+                st.rerun()
+            handle_auth()
+        else:
+            render_landing()
     else:
-        # Sidebar Navigation
+        # App inner experience
         render_sidebar()
         
         # Routing logic
-        if st.session_state['page'] == 'Dashboard':
+        if st.session_state['page'] == 'Dashboard' or st.session_state['page'] == 'Home':
             render_dashboard()
         elif st.session_state['page'] == 'Generador':
             render_generator()
