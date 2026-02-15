@@ -2,44 +2,41 @@ import streamlit as st
 
 def render_sidebar():
     with st.sidebar:
-        # Logo placeholder
+        # Logo & App Identity
         st.markdown("""
-            <div style="text-align: center; padding: 1.5rem 0;">
-                <h1 style="color: white !important; font-size: 1.8rem; margin:0;">ProfeLibre 🚀</h1>
-                <p style="color: #94A3B8; font-size: 0.8rem;">Arquitectura Educativa AI</p>
+            <div style="padding: 1.5rem 0; border-bottom: 1px solid #F3F4F6; margin-bottom: 2rem;">
+                <h1 style="color: #1D4ED8 !important; font-size: 1.8rem; margin:0; font-weight: 800;">ProfeLibre</h1>
+                <p style="color: #6B7280; font-size: 0.85rem; margin-top: 0.25rem;">Panel Docente</p>
             </div>
         """, unsafe_allow_html=True)
         
-        st.markdown("<br>", unsafe_allow_html=True)
-        
-        # Navigation with custom styling (buttons are already styled in main.py)
-        if st.button("🏠 DASHBOARD", use_container_width=True):
+        # Navigation Menu
+        # The buttons are styled globally in main.py, but we can refine them here
+        if st.button("📊 Dashboard", use_container_width=True, type="secondary"):
             st.session_state['page'] = 'Dashboard'
             st.rerun()
             
-        if st.button("🚀 GENERADOR", use_container_width=True):
+        if st.button("🚀 Generador", use_container_width=True, type="secondary"):
             st.session_state['page'] = 'Generador'
             st.rerun()
             
-        if st.button("👥 ALUMNOS PIE", use_container_width=True):
+        if st.button("👥 Alumnos PIE", use_container_width=True, type="secondary"):
             st.session_state['page'] = 'Estudiantes'
             st.rerun()
             
         st.markdown("<br><br>", unsafe_allow_html=True)
         
-        # Profe AI Consultor Card
+        # Profile & Context (Mocking the user info at bottom)
         st.markdown("""
-            <div style="background: rgba(255, 255, 255, 0.03); padding: 1rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);">
-                <p style="color: #818CF8; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">🤖 Consultor IA</p>
-                <p style="color: #94A3B8; font-size: 0.8rem;">¿Cómo puedo ayudarte hoy con alguna adecuación?</p>
+            <div style="background: #F9FAFB; padding: 1rem; border-radius: 8px; border: 1px solid #E5E7EB; margin-top: 5rem;">
+                <p style="color: #374151; font-weight: 600; font-size: 0.9rem; margin: 0;">Profe Maria</p>
+                <p style="color: #6B7280; font-size: 0.75rem; margin: 0;">Liceo Bicentenario</p>
             </div>
         """, unsafe_allow_html=True)
         
         st.markdown("<br>", unsafe_allow_html=True)
         
-        # User Info & Logout
-        st.markdown("---")
-        st.caption(f"Sesión: {st.session_state['user']['email']}")
+        # Logout
         if st.button("Cerrar Sesión", use_container_width=True):
             st.session_state['user'] = None
             st.rerun()

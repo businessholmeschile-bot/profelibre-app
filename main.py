@@ -13,18 +13,19 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Global CSS for Stitch Identity
+# Global CSS for Stitch Identity (Light Theme)
 def local_css():
     st.markdown("""
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700&display=swap');
         
         :root {
-            --primary-color: #4F46E5;
-            --secondary-color: #818CF8;
-            --bg-color: #0F172A;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --text-main: #F8FAFC;
+            --primary-color: #1D4ED8; /* Azul Stitch */
+            --bg-color: #F9FAFB;
+            --sidebar-bg: #FFFFFF;
+            --card-bg: #FFFFFF;
+            --text-main: #111827;
+            --text-muted: #6B7280;
         }
 
         .main {
@@ -37,41 +38,49 @@ def local_css():
             color: var(--text-main) !important;
         }
 
-        /* Glassmorphism Card Wrapper */
-        .stMetric, .stTable {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        p, span, div {
+            font-family: 'Inter', sans-serif;
         }
 
-        /* Customize Buttons */
-        .stButton>button {
+        /* Clean Cards with Subtle Shadows */
+        .stMetric, .stTable, div[data-testid="stExpander"] {
+            background: var(--card-bg);
             border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+
+        /* Buttons Styling - Solid Blue */
+        .stButton>button {
+            border-radius: 6px;
             background-color: var(--primary-color) !important;
             color: white !important;
             border: none;
-            padding: 10px 24px;
+            padding: 0.5rem 1.5rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: background 0.2s;
         }
         
         .stButton>button:hover {
-            background-color: var(--secondary-color) !important;
-            box-shadow: 0 0 15px var(--primary-color);
-            transform: translateY(-2px);
+            background-color: #1E40AF !important;
+            border: none;
         }
 
-        /* Sidebar Styling */
+        /* Sidebar Styling - White and Clean */
         section[data-testid="stSidebar"] {
-            background-color: #1E293B !important;
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: var(--sidebar-bg) !important;
+            border-right: 1px solid #E5E7EB;
         }
         
-        .sidebar-content {
-            padding: 1.5rem;
+        [data-testid="stSidebarNav"] {
+            background-color: var(--sidebar-bg) !important;
+        }
+
+        /* Input Styling */
+        .stTextInput>div>div>input {
+            border-radius: 6px;
+            border: 1px solid #D1D5DB;
         }
         </style>
     """, unsafe_allow_html=True)
